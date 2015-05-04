@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mesosphere Animated Logo</title>
+  <style type="text/css">
+    html {
+        height: 100%;
+    }
+    body {
+        background-color: #000;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    div {
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .svg {
+        display: block;
+    }
+
+    input {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+  </style>
+</head>
+<body>
+<input class="scale-selector" type="range" name="scale" value="1" min=".2" max="2.4" step=".2" />
+<div class="wrapper">
+    <svg class="svg" width="400" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:scale(1)">
+        <defs>
+          <linearGradient id="mesosphere" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:rgb(147,81,229);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:rgb(239,70,139);stop-opacity:1" />
+          </linearGradient>
+        </defs>
+
+        <path id="center" d="" fill="transparent" stroke="url(#mesosphere)" stroke-width="17"/>
+
+        <path id="right" d="" fill="transparent" stroke="url(#mesosphere)" stroke-width="17"/>
+
+        <path id="left" d="" fill="transparent" stroke="url(#mesosphere)" stroke-width="17"/>
+
+    </svg>
+</div>
+
+<script type="text/javascript" src="./d3.js" charset="utf-8"></script>
+<script type="text/javascript" src="./main.js" charset="utf-8"></script>
+</body>
+</html>
+
