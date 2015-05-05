@@ -24,16 +24,34 @@
         display: block;
     }
 
-    input {
+    .controls {
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         position: absolute;
-        top: 0;
         right: 0;
+        top: 0;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
     }
 
   </style>
 </head>
 <body>
-<input class="scale-selector" type="range" name="scale" value="1" min=".2" max="2.4" step=".2" />
+<div class="controls">
+    <label>
+        Speed:
+        <input class="speed-selector" type="range" name="scale" value="700" min="100" max="2000" step="100" />
+    </label>
+    <label>
+        Scale:
+        <input class="scale-selector" type="range" name="scale" value="1" min=".1" max="3" step=".2" />
+    </label>
+</div>
 <div class="wrapper">
     <svg class="svg" width="400" height="300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="transform:scale(1)">
         <defs>

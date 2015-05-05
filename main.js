@@ -12,7 +12,12 @@ window.onload = function () {
         .y(function(d) { return d[1]; })
         .interpolate('basis');
     var svgEl = document.querySelector('.svg');
+    var speedEl = document.querySelector('.speed-selector');
     var scaleEl = document.querySelector('.scale-selector');
+
+    speedEl.addEventListener('change', function () {
+        startAnimation(speedEl.value);
+    });
 
     scaleEl.addEventListener('change', function () {
         svgEl.style.transform = "scale(" +scaleEl.value+ ")";
@@ -63,29 +68,40 @@ window.onload = function () {
         }
     }
 
+    var intervalID = null;
+    function startAnimation (time) {
+        if (!time) {
+            time = 1000;
+        }
+
+        if (intervalID) {
+            window.clearInterval(intervalID);
+        }
+
+        intervalID = setInterval(function () {
+            d3.select('#center')
+                .transition()
+                .ease("in-out")
+                .duration(time)
+                .attr('d', getTriangle('center', random(180, 280)));
+
+            d3.select('#left')
+                .transition()
+                .ease("in-out")
+                .duration(time)
+                .attr('d', getTriangle('left', random(160, 240)));
+
+            d3.select('#right')
+                .transition()
+                .ease("in-out")
+                .duration(time)
+                .attr('d', getTriangle('right', random(140, 195)));
+          }, time);
+    }
+
     // Set up default coordinates
     document.getElementById('center').setAttribute('d', getTriangle('center'));
     document.getElementById('left').setAttribute('d', getTriangle('left'));
     document.getElementById('right').setAttribute('d', getTriangle('right'));
-
-    var time = 1000;
-    setInterval(function () {
-        d3.select('#center')
-            .transition()
-            .ease("in-out")
-            .duration(time)
-            .attr('d', getTriangle('center', random(180, 280)));
-
-        d3.select('#left')
-            .transition()
-            .ease("in-out")
-            .duration(time)
-            .attr('d', getTriangle('left', random(160, 240)));
-
-        d3.select('#right')
-            .transition()
-            .ease("in-out")
-            .duration(time)
-            .attr('d', getTriangle('right', random(140, 195)));
-      }, time);
+    startAnimation(700);
 }
